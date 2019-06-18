@@ -134,5 +134,5 @@ Pod::Spec.new do |spec|
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   spec.dependency "Alamofire", '~> 4.8.2'
-  Spec.swift_versions = "5.0"
+  spec.swift_versions = "5.0"
 end
