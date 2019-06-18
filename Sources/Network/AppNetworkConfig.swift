@@ -95,7 +95,7 @@ public class NetworkConfig {
 }
 extension AppNetworkApi {
     public func get(app: String = "") -> AppNetworkRequest {
-        let newUrl = ""
+        let _ = ""
         
         return AppNetworkRequest.init(api: self)
     }
