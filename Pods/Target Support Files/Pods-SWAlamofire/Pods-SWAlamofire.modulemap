@@ -1,0 +1,6 @@
+framework module Pods_SWAlamofire {
+  umbrella header "Pods-SWAlamofire-umbrella.h"
+
+  export *
+  module * { export * }
+}

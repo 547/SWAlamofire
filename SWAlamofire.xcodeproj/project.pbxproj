@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6564974ACB5F69BE02967DB5 /* Pods_SWAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68898FF30448FEEBCD5BF1F /* Pods_SWAlamofire.framework */; };
 		E6B9752A22B8936700C21917 /* SWAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6B9752022B8936700C21917 /* SWAlamofire.framework */; };
 		E6B9752F22B8936700C21917 /* SWAlamofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B9752E22B8936700C21917 /* SWAlamofireTests.swift */; };
 		E6B9753122B8936700C21917 /* SWAlamofire.h in Headers */ = {isa = PBXBuildFile; fileRef = E6B9752322B8936700C21917 /* SWAlamofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E6B9753B22B8941900C21917 /* Network in Resources */ = {isa = PBXBuildFile; fileRef = E6B9753A22B8941900C21917 /* Network */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +25,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA0B4F5ECC5F5CFFC8F20819 /* Pods-SWAlamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWAlamofire.debug.xcconfig"; path = "Target Support Files/Pods-SWAlamofire/Pods-SWAlamofire.debug.xcconfig"; sourceTree = "<group>"; };
+		BE5D38EFCFA7D06DFD366FE5 /* Pods-SWAlamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWAlamofire.release.xcconfig"; path = "Target Support Files/Pods-SWAlamofire/Pods-SWAlamofire.release.xcconfig"; sourceTree = "<group>"; };
+		D68898FF30448FEEBCD5BF1F /* Pods_SWAlamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWAlamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B9752022B8936700C21917 /* SWAlamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SWAlamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B9752322B8936700C21917 /* SWAlamofire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWAlamofire.h; sourceTree = "<group>"; };
 		E6B9752422B8936700C21917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6B9752922B8936700C21917 /* SWAlamofireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWAlamofireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B9752E22B8936700C21917 /* SWAlamofireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAlamofireTests.swift; sourceTree = "<group>"; };
 		E6B9753022B8936700C21917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6B9753A22B8941900C21917 /* Network */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Network; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6564974ACB5F69BE02967DB5 /* Pods_SWAlamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,12 +57,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D8EEA27B666366690EBEBB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D68898FF30448FEEBCD5BF1F /* Pods_SWAlamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3C3DF8708509376400EFAEC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA0B4F5ECC5F5CFFC8F20819 /* Pods-SWAlamofire.debug.xcconfig */,
+				BE5D38EFCFA7D06DFD366FE5 /* Pods-SWAlamofire.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E6B9751622B8936700C21917 = {
 			isa = PBXGroup;
 			children = (
-				E6B9752222B8936700C21917 /* SWAlamofire */,
+				E6B9752222B8936700C21917 /* Sources */,
 				E6B9752D22B8936700C21917 /* SWAlamofireTests */,
 				E6B9752122B8936700C21917 /* Products */,
+				E3C3DF8708509376400EFAEC /* Pods */,
+				1D8EEA27B666366690EBEBB2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,13 +94,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E6B9752222B8936700C21917 /* SWAlamofire */ = {
+		E6B9752222B8936700C21917 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E6B9753A22B8941900C21917 /* Network */,
 				E6B9752322B8936700C21917 /* SWAlamofire.h */,
 				E6B9752422B8936700C21917 /* Info.plist */,
 			);
-			path = SWAlamofire;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		E6B9752D22B8936700C21917 /* SWAlamofireTests */ = {
@@ -104,6 +131,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6B9753422B8936700C21917 /* Build configuration list for PBXNativeTarget "SWAlamofire" */;
 			buildPhases = (
+				3AB3E94714E902975659D442 /* [CP] Check Pods Manifest.lock */,
 				E6B9751B22B8936700C21917 /* Headers */,
 				E6B9751C22B8936700C21917 /* Sources */,
 				E6B9751D22B8936700C21917 /* Frameworks */,
@@ -177,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6B9753B22B8941900C21917 /* Network in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +217,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AB3E94714E902975659D442 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SWAlamofire-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E6B9751C22B8936700C21917 /* Sources */ = {
@@ -340,6 +394,7 @@
 		};
 		E6B9753522B8936700C21917 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0B4F5ECC5F5CFFC8F20819 /* Pods-SWAlamofire.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -348,8 +403,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SWAlamofire/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,6 +421,7 @@
 		};
 		E6B9753622B8936700C21917 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE5D38EFCFA7D06DFD366FE5 /* Pods-SWAlamofire.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -373,8 +430,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SWAlamofire/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
