@@ -55,6 +55,7 @@ public class AppNetworkApi {
     /// 调用方法名
     public var functionName: String = ""
     /// 初始化方法
+    public init() {}
 }
 extension AppNetworkApi {
     /// 接口名
