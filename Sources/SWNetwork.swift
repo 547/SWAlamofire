@@ -1,16 +1,16 @@
 //
-//  AppNetwork.swift
-//  iFoodMacau
+//  SWNetwork.swift
+//  SWAlamofire
 //
-//  Created by Jason Lee on 2018/7/12.
-//  Copyright © 2018 CYCON.com. All rights reserved.
+//  Created by Supernova SanDick SSD on 2019/6/18.
+//  Copyright © 2019 Seven. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-public class AppNetwork {
-    public static let `default` = AppNetwork()
+public class SWNetwork {
+    public static let `default` = SWNetwork()
     public let networkReachabilityChangedNotificationName = Notification.Name.init("NETWORK_REACHABILITY_CHANGED")
 
     private lazy var sessionManager: SessionManager = {
@@ -22,7 +22,7 @@ public class AppNetwork {
     }()
     private let reachabilityManager: NetworkReachabilityManager? = NetworkReachabilityManager.init(host: "www.baidu.com")
     
-    private(set) var currentReachability: AppNetwork.Reachability = .unknown {
+    private(set) var currentReachability: SWNetwork.Reachability = .unknown {
         didSet {
             if oldValue != currentReachability {
                 notifyNetworkReachabilityStatusChanged()
@@ -51,17 +51,17 @@ public class AppNetwork {
         reachabilityManager?.startListening()
     }
 }
-extension AppNetwork {
+extension SWNetwork {
     private func notifyNetworkReachabilityStatusChanged() {
         NotificationCenter.default.post(name: networkReachabilityChangedNotificationName, object: nil)
     }
 }
-extension AppNetwork {
-    public func api(_ api: AppNetworkApi) -> AppNetworkRequest {
-        return AppNetworkRequest(api: api)
+extension SWNetwork {
+    public func api(_ api: SWNetworkApi) -> SWNetworkRequest {
+        return SWNetworkRequest(api: api)
     }
     @discardableResult
-    public func request(_ request: AppNetworkRequest) -> AppNetwork {
+    public func request(_ request: SWNetworkRequest) -> SWNetwork {
         
         
         let url = request.api.url
@@ -132,20 +132,20 @@ extension AppNetwork {
     }
 }
 
-extension AppNetwork {
-    private func willRequest(_ request: AppNetworkRequest) {
+extension SWNetwork {
+    private func willRequest(_ request: SWNetworkRequest) {
         guard request.debugRequest else { return }
         print("\(request)")
     }
-    private func didResponse(_ response: AppNetworkResponse) {
+    private func didResponse(_ response: SWNetworkResponse) {
         guard response.request.debugResponse else { return }
         print("\(response)")
     }
 }
 
-extension AppNetwork {
-    public func onSuccess(_ request: AppNetworkRequest, _ object: Any?) {
-        var response = AppNetworkResponse(request: request)
+extension SWNetwork {
+    public func onSuccess(_ request: SWNetworkRequest, _ object: Any?) {
+        var response = SWNetworkResponse(request: request)
         
         if let result = request.api.responseSuccess?(object, response) {
             response = result
@@ -173,15 +173,15 @@ extension AppNetwork {
         onFinished(response)
     }
     
-    public func onFailure(_ request: AppNetworkRequest, _ error: Error?) {
+    public func onFailure(_ request: SWNetworkRequest, _ error: Error?) {
         let code = (error as NSError?)?.code ?? -1
-        let response = AppNetworkResponse.failure(with: request, code: code, message: error?.localizedDescription ?? "No Error Message")
+        let response = SWNetworkResponse.failure(with: request, code: code, message: error?.localizedDescription ?? "No Error Message")
         
         didResponse(response)
         onFinished(response)
     }
     
-    private func onFinished(_ response: AppNetworkResponse) {
+    private func onFinished(_ response: SWNetworkResponse) {
         guard !response.request.isCancel else {
             let dateFormatter = DateFormatter.init()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

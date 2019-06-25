@@ -1,37 +1,37 @@
 //
-//  AppNetworkResponse.swift
-//  iFoodMacau
+//  SWNetworkResponse.swift
+//  SWAlamofire
 //
-//  Created by Jason Lee on 2018/7/12.
-//  Copyright © 2018 CYCON.com. All rights reserved.
+//  Created by Supernova SanDick SSD on 2019/6/18.
+//  Copyright © 2019 Seven. All rights reserved.
 //
 
 import Foundation
 
-public class AppNetworkResponse {
-    private(set) var request: AppNetworkRequest
+public class SWNetworkResponse {
+    private(set) var request: SWNetworkRequest
     public var code:       Int = -1
     public var message:    String? = nil
     public var data:       [String: Any]? = nil
     
-    public init(request: AppNetworkRequest) { self.request = request }
+    public init(request: SWNetworkRequest) { self.request = request }
 }
 
-extension AppNetworkResponse {
-    public static func success(with request: AppNetworkRequest, code: Int) -> AppNetworkResponse {
-        let response = AppNetworkResponse(request: request)
+extension SWNetworkResponse {
+    public static func success(with request: SWNetworkRequest, code: Int) -> SWNetworkResponse {
+        let response = SWNetworkResponse(request: request)
         response.code = code
         return response
     }
-    public static func failure(with request: AppNetworkRequest, code: Int, message: String? = nil) -> AppNetworkResponse {
-        let response = AppNetworkResponse(request: request)
+    public static func failure(with request: SWNetworkRequest, code: Int, message: String? = nil) -> SWNetworkResponse {
+        let response = SWNetworkResponse(request: request)
         response.code = code
         response.message = message
         return response
     }
 }
 
-extension AppNetworkResponse: CustomStringConvertible {
+extension SWNetworkResponse: CustomStringConvertible {
     public var description: String {
         let parametersString = "\(request.api.parameters != nil ? "\(request.api.parameters!)" : "No parameters")\n"
         let dataString = request.debugResponseData ? "\(data != nil ? "\(data!)" : "No data")\n" : "Hidden data"

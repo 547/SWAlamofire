@@ -1,15 +1,15 @@
 //
-//  AppNetworkConfig.swift
-//  iFoodMacau
+//  SWNetworkConfig.swift
+//  SWAlamofire
 //
-//  Created by Jason Lee on 2018/7/12.
-//  Copyright © 2018 CYCON.com. All rights reserved.
+//  Created by Supernova SanDick SSD on 2019/6/18.
+//  Copyright © 2019 Seven. All rights reserved.
 //
 
 import Foundation
 
 // Enumeration
-extension AppNetwork {
+extension SWNetwork {
     /// 请求方法
     public enum HttpMethod { case post, get, upload, putUpload, patch, put, delete }
     
@@ -40,16 +40,16 @@ extension AppNetwork {
 
 // Protocol
 /// 网络组件API格式协议
-public class AppNetworkApi {
-    public typealias ResponseSuccess = (Any?, AppNetworkResponse) -> AppNetworkResponse
+public class SWNetworkApi {
+    public typealias ResponseSuccess = (Any?, SWNetworkResponse) -> SWNetworkResponse
     /// 请求方法
-    public var method: AppNetwork.HttpMethod = .get
+    public var method: SWNetwork.HttpMethod = .get
     /// 目标url
     public var url: String = ""
     /// 参数与数据
     public var parameters: [String: Any]?
     /// 文件
-    public var files: [AppNetwork.UploadingFile]?
+    public var files: [SWNetwork.UploadingFile]?
     /// 回调成功操作
     public var responseSuccess: ResponseSuccess?
     /// 调用方法名
@@ -57,14 +57,14 @@ public class AppNetworkApi {
     /// 初始化方法
     public init() {}
 }
-extension AppNetworkApi {
+extension SWNetworkApi {
     /// 接口名
     public static var apiName: String { return String(describing: self.self) }
     public var apiName: String { return String(describing: self) }
 }
 
 // Structure
-extension AppNetwork {
+extension SWNetwork {
     // 上传文件结构体
     public struct UploadingFile {
         public var fileData: Data
@@ -80,7 +80,7 @@ extension AppNetwork {
     }
 }
 
-public class NetworkConfig {
+public class SWNetworkConfig {
     public var `protocol`:String{
         return ""
     }
@@ -94,11 +94,11 @@ public class NetworkConfig {
         return ""
     }
 }
-extension AppNetworkApi {
-    public func get(app: String = "") -> AppNetworkRequest {
+extension SWNetworkApi {
+    public func get(app: String = "") -> SWNetworkRequest {
         let _ = ""
         
-        return AppNetworkRequest.init(api: self)
+        return SWNetworkRequest.init(api: self)
     }
     
 }

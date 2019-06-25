@@ -1,9 +1,9 @@
 //
-//  AppNetworkRequest.swift
-//  iFoodMacau
+//  SWNetworkRequest.swift
+//  SWAlamofire
 //
-//  Created by Jason Lee on 2018/7/12.
-//  Copyright © 2018 CYCON.com. All rights reserved.
+//  Created by Supernova SanDick SSD on 2019/6/18.
+//  Copyright © 2019 Seven. All rights reserved.
 //
 
 import Foundation
@@ -13,12 +13,12 @@ import Foundation
  *  自定义Request
  */
 
-public class AppNetworkRequest {
+public class SWNetworkRequest {
     public typealias NetworkProgressing = (Progress) -> Void
-    public typealias NetworkRequestFinished = (AppNetworkResponse) -> Void
-    public typealias NetworkResponseSuccess = (Any?, AppNetworkResponse) -> AppNetworkResponse
+    public typealias NetworkRequestFinished = (SWNetworkResponse) -> Void
+    public typealias NetworkResponseSuccess = (Any?, SWNetworkResponse) -> SWNetworkResponse
     
-    public var api: AppNetworkApi
+    public var api: SWNetworkApi
     
     private(set) var progressing:     NetworkProgressing? = nil
     private(set) var finished:        NetworkRequestFinished? = nil
@@ -31,12 +31,12 @@ public class AppNetworkRequest {
     
     public var headers: [String : String]? = nil
     
-    public init(api: AppNetworkApi) {
+    public init(api: SWNetworkApi) {
         self.api = api
     }
 }
 
-extension AppNetworkRequest {
+extension SWNetworkRequest {
     @discardableResult
     public func onProgressing(_ closure: NetworkProgressing?) -> Self {
         progressing = closure
@@ -45,7 +45,7 @@ extension AppNetworkRequest {
     @discardableResult
     public func onFinished(_ closure: NetworkRequestFinished?) -> Self {
         finished = closure
-        AppNetwork.default.request(self)
+        SWNetwork.default.request(self)
         return self
     } 
     @discardableResult
@@ -55,7 +55,7 @@ extension AppNetworkRequest {
     }
 }
 
-extension AppNetworkRequest: CustomStringConvertible {
+extension SWNetworkRequest: CustomStringConvertible {
     public var description: String {
         let parametersString = "\(api.parameters != nil ? "\(api.parameters!)" : "No parameters")\n"
         let dateFormatter = DateFormatter.init()

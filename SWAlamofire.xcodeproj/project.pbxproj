@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		6564974ACB5F69BE02967DB5 /* Pods_SWAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68898FF30448FEEBCD5BF1F /* Pods_SWAlamofire.framework */; };
+		E618566122C2201D00ED56D8 /* SWNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618565D22C2201D00ED56D8 /* SWNetwork.swift */; };
+		E618566222C2201D00ED56D8 /* SWNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618565E22C2201D00ED56D8 /* SWNetworkConfig.swift */; };
+		E618566322C2201D00ED56D8 /* SWNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618565F22C2201D00ED56D8 /* SWNetworkRequest.swift */; };
+		E618566422C2201D00ED56D8 /* SWNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618566022C2201D00ED56D8 /* SWNetworkResponse.swift */; };
 		E6B9752A22B8936700C21917 /* SWAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6B9752022B8936700C21917 /* SWAlamofire.framework */; };
 		E6B9752F22B8936700C21917 /* SWAlamofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B9752E22B8936700C21917 /* SWAlamofireTests.swift */; };
 		E6B9753122B8936700C21917 /* SWAlamofire.h in Headers */ = {isa = PBXBuildFile; fileRef = E6B9752322B8936700C21917 /* SWAlamofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E6B9753B22B8941900C21917 /* Network in Resources */ = {isa = PBXBuildFile; fileRef = E6B9753A22B8941900C21917 /* Network */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,13 +31,16 @@
 		AA0B4F5ECC5F5CFFC8F20819 /* Pods-SWAlamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWAlamofire.debug.xcconfig"; path = "Target Support Files/Pods-SWAlamofire/Pods-SWAlamofire.debug.xcconfig"; sourceTree = "<group>"; };
 		BE5D38EFCFA7D06DFD366FE5 /* Pods-SWAlamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWAlamofire.release.xcconfig"; path = "Target Support Files/Pods-SWAlamofire/Pods-SWAlamofire.release.xcconfig"; sourceTree = "<group>"; };
 		D68898FF30448FEEBCD5BF1F /* Pods_SWAlamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWAlamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E618565D22C2201D00ED56D8 /* SWNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWNetwork.swift; sourceTree = "<group>"; };
+		E618565E22C2201D00ED56D8 /* SWNetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWNetworkConfig.swift; sourceTree = "<group>"; };
+		E618565F22C2201D00ED56D8 /* SWNetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWNetworkRequest.swift; sourceTree = "<group>"; };
+		E618566022C2201D00ED56D8 /* SWNetworkResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWNetworkResponse.swift; sourceTree = "<group>"; };
 		E6B9752022B8936700C21917 /* SWAlamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SWAlamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B9752322B8936700C21917 /* SWAlamofire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWAlamofire.h; sourceTree = "<group>"; };
 		E6B9752422B8936700C21917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6B9752922B8936700C21917 /* SWAlamofireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWAlamofireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B9752E22B8936700C21917 /* SWAlamofireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAlamofireTests.swift; sourceTree = "<group>"; };
 		E6B9753022B8936700C21917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6B9753A22B8941900C21917 /* Network */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Network; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +103,10 @@
 		E6B9752222B8936700C21917 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E6B9753A22B8941900C21917 /* Network */,
+				E618565D22C2201D00ED56D8 /* SWNetwork.swift */,
+				E618565E22C2201D00ED56D8 /* SWNetworkConfig.swift */,
+				E618565F22C2201D00ED56D8 /* SWNetworkRequest.swift */,
+				E618566022C2201D00ED56D8 /* SWNetworkResponse.swift */,
 				E6B9752322B8936700C21917 /* SWAlamofire.h */,
 				E6B9752422B8936700C21917 /* Info.plist */,
 			);
@@ -176,6 +185,7 @@
 				TargetAttributes = {
 					E6B9751F22B8936700C21917 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					E6B9752822B8936700C21917 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -205,7 +215,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6B9753B22B8941900C21917 /* Network in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +257,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E618566222C2201D00ED56D8 /* SWNetworkConfig.swift in Sources */,
+				E618566422C2201D00ED56D8 /* SWNetworkResponse.swift in Sources */,
+				E618566322C2201D00ED56D8 /* SWNetworkRequest.swift in Sources */,
+				E618566122C2201D00ED56D8 /* SWNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AA0B4F5ECC5F5CFFC8F20819 /* Pods-SWAlamofire.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -414,6 +428,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seven.SWAlamofire;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -423,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE5D38EFCFA7D06DFD366FE5 /* Pods-SWAlamofire.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -449,6 +465,7 @@
 		E6B9753822B8936700C21917 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GTWT2P766B;
 				INFOPLIST_FILE = SWAlamofireTests/Info.plist;
@@ -467,6 +484,7 @@
 		E6B9753922B8936700C21917 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GTWT2P766B;
 				INFOPLIST_FILE = SWAlamofireTests/Info.plist;
