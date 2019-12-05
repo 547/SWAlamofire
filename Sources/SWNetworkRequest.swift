@@ -13,23 +13,23 @@ import Foundation
  *  自定义Request
  */
 
-public class SWNetworkRequest {
+open class SWNetworkRequest {
     public typealias NetworkProgressing = (Progress) -> Void
     public typealias NetworkRequestFinished = (SWNetworkResponse) -> Void
     public typealias NetworkResponseSuccess = (Any?, SWNetworkResponse) -> SWNetworkResponse
     
-    public var api: SWNetworkApi
+    open var api: SWNetworkApi
     
     private(set) var progressing:     NetworkProgressing? = nil
     private(set) var finished:        NetworkRequestFinished? = nil
     private(set) var responseSuccess: NetworkResponseSuccess? = nil
     
-    public var isCancel:           Bool = false
-    public var debugRequest:       Bool = true
-    public var debugResponse:      Bool = true
-    public var debugResponseData:  Bool = true
+    open var isCancel:           Bool = false
+    open var debugRequest:       Bool = true
+    open var debugResponse:      Bool = true
+    open var debugResponseData:  Bool = true
     
-    public var headers: [String : String]? = nil
+    open var headers: [String : String]? = nil
     
     public init(api: SWNetworkApi) {
         self.api = api
@@ -38,25 +38,25 @@ public class SWNetworkRequest {
 
 extension SWNetworkRequest {
     @discardableResult
-    public func onProgressing(_ closure: NetworkProgressing?) -> Self {
+    open func onProgressing(_ closure: NetworkProgressing?) -> Self {
         progressing = closure
         return self
     }
     @discardableResult
-    public func onFinished(_ closure: NetworkRequestFinished?) -> Self {
+    open func onFinished(_ closure: NetworkRequestFinished?) -> Self {
         finished = closure
         SWNetwork.default.request(self)
         return self
     } 
     @discardableResult
-    public func onResponseSuccess(_ closure: NetworkResponseSuccess?) -> Self {
+    open func onResponseSuccess(_ closure: NetworkResponseSuccess?) -> Self {
         responseSuccess = closure
         return self
     }
 }
 
 extension SWNetworkRequest: CustomStringConvertible {
-    public var description: String {
+    open var description: String {
         let parametersString = "\(api.parameters != nil ? "\(api.parameters!)" : "No parameters")\n"
         let dateFormatter = DateFormatter.init()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

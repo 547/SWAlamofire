@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-public class SWNetwork {
+open class SWNetwork {
     public static let `default` = SWNetwork()
     public let networkReachabilityChangedNotificationName = Notification.Name.init("NETWORK_REACHABILITY_CHANGED")
 
@@ -57,11 +57,11 @@ extension SWNetwork {
     }
 }
 extension SWNetwork {
-    public func api(_ api: SWNetworkApi) -> SWNetworkRequest {
+    open func api(_ api: SWNetworkApi) -> SWNetworkRequest {
         return SWNetworkRequest(api: api)
     }
     @discardableResult
-    public func request(_ request: SWNetworkRequest) -> SWNetwork {
+    open func request(_ request: SWNetworkRequest) -> SWNetwork {
         
         
         let url = request.api.url
@@ -144,7 +144,7 @@ extension SWNetwork {
 }
 
 extension SWNetwork {
-    public func onSuccess(_ request: SWNetworkRequest, _ object: Any?) {
+    open func onSuccess(_ request: SWNetworkRequest, _ object: Any?) {
         var response = SWNetworkResponse(request: request)
         
         if let result = request.api.responseSuccess?(object, response) {
@@ -173,7 +173,7 @@ extension SWNetwork {
         onFinished(response)
     }
     
-    public func onFailure(_ request: SWNetworkRequest, _ error: Error?) {
+    open func onFailure(_ request: SWNetworkRequest, _ error: Error?) {
         let code = (error as NSError?)?.code ?? -1
         let response = SWNetworkResponse.failure(with: request, code: code, message: error?.localizedDescription ?? "No Error Message")
         

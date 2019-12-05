@@ -40,27 +40,27 @@ extension SWNetwork {
 
 // Protocol
 /// 网络组件API格式协议
-public class SWNetworkApi {
+open class SWNetworkApi {
     public typealias ResponseSuccess = (Any?, SWNetworkResponse) -> SWNetworkResponse
     /// 请求方法
-    public var method: SWNetwork.HttpMethod = .get
+    open var method: SWNetwork.HttpMethod = .get
     /// 目标url
-    public var url: String = ""
+    open var url: String = ""
     /// 参数与数据
-    public var parameters: [String: Any]?
+    open var parameters: [String: Any]?
     /// 文件
-    public var files: [SWNetwork.UploadingFile]?
+    open var files: [SWNetwork.UploadingFile]?
     /// 回调成功操作
-    public var responseSuccess: ResponseSuccess?
+    open var responseSuccess: ResponseSuccess?
     /// 调用方法名
-    public var functionName: String = ""
+    open var functionName: String = ""
     /// 初始化方法
     public init() {}
 }
 extension SWNetworkApi {
     /// 接口名
     public static var apiName: String { return String(describing: self.self) }
-    public var apiName: String { return String(describing: self) }
+    open var apiName: String { return String(describing: self) }
 }
 
 // Structure
@@ -80,22 +80,22 @@ extension SWNetwork {
     }
 }
 
-public class SWNetworkConfig {
-    public var `protocol`:String{
+open class SWNetworkConfig {
+    open var `protocol`:String{
         return ""
     }
-    public var host:String{
+    open var host:String{
         return ""
     }
-    public var port:Int?{
+    open var port:Int?{
         return nil
     }
-    public var path:String{
+    open var path:String{
         return ""
     }
 }
 extension SWNetworkApi {
-    public func get(app: String = "") -> SWNetworkRequest {
+    open func get(app: String = "") -> SWNetworkRequest {
         let _ = ""
         
         return SWNetworkRequest.init(api: self)

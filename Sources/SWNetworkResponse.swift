@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class SWNetworkResponse {
+open class SWNetworkResponse {
     private(set) var request: SWNetworkRequest
-    public var code:       Int = -1
-    public var message:    String? = nil
-    public var data:       [String: Any]? = nil
+    open var code:       Int = -1
+    open var message:    String? = nil
+    open var data:       [String: Any]? = nil
     
     public init(request: SWNetworkRequest) { self.request = request }
 }
@@ -32,7 +32,7 @@ extension SWNetworkResponse {
 }
 
 extension SWNetworkResponse: CustomStringConvertible {
-    public var description: String {
+    open var description: String {
         let parametersString = "\(request.api.parameters != nil ? "\(request.api.parameters!)" : "No parameters")\n"
         let dataString = request.debugResponseData ? "\(data != nil ? "\(data!)" : "No data")\n" : "Hidden data"
         let dateFormatter = DateFormatter.init()

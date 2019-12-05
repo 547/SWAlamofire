@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double SWAlamofireVersionNumber;
 //! Project version string for SWAlamofire.
 FOUNDATION_EXPORT const unsigned char SWAlamofireVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <SWAlamofire/PublicHeader.h>
+// In this header, you should import all the open headers of your framework using statements like #import <SWAlamofire/openHeader.h>
 
 
