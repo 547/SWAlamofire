@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "SWAlamofire"
-  spec.version      = "0.0.3"
+  spec.version      = "0.0.4"
   spec.summary      = "根据."
 
   spec.description  = <<-DESC
