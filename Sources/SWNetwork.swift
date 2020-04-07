@@ -64,7 +64,7 @@ extension SWNetwork {
     open func request(_ request: SWNetworkRequest) -> SWNetwork {
         
         
-        let url = request.api.url
+        let urlString = request.api.url
         var method:HTTPMethod{
             var result = HTTPMethod.get
             switch request.api.method {
@@ -95,34 +95,41 @@ extension SWNetwork {
          * get、delete 两种方法的参数 parameters 会被自动拼接到url 后面
          * post、patch、put的参数 parameters 则是在请求体body里面
          */
-        let dataRequest = sessionManager.request(url, method: method, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+        let dataRequest = sessionManager.request(urlString, method: method, parameters: parameters, encoding: URLEncoding.default, headers: headers)
         if let url = dataRequest.request?.url?.absoluteString {
             request.api.url = url
         }
         
         willRequest(request)
-        if let files = request.api.files, files.count > 0, let urlRequest = dataRequest.request {
-            sessionManager.upload(multipartFormData: { (multipartFormData) in
-                files.forEach({ (file) in
-                    multipartFormData.append(file.fileData, withName: file.parameterName, fileName: file.fileName, mimeType: file.mimeType.rawValue)
+        if let files = request.api.files, files.count > 0, let url = URL(string: urlString) {
+            var originalRequest: URLRequest?
+            do {
+                originalRequest = try URLRequest(url: url, method: method, headers: headers)
+                let encodedURLRequest = try URLEncoding.default.encode(originalRequest!, with: parameters)
+                sessionManager.upload(multipartFormData: { (multipartFormData) in
+                    files.forEach({ (file) in
+                        multipartFormData.append(file.fileData, withName: file.parameterName, fileName: file.fileName, mimeType: file.mimeType.rawValue)
+                    })
+                }, with: encodedURLRequest, encodingCompletion: {[weak self] (multipartFormDataEncodingResult) in
+                    switch multipartFormDataEncodingResult {
+                    case .success( let uploadRequest, _, _):
+                        uploadRequest.responseJSON(completionHandler: { (dataResponse) in
+                            if let error = dataResponse.error {
+                                self?.onFailure(request, error)
+                            }else{
+                                self?.onSuccess(request, dataResponse.result.value)
+                            }
+                        })
+                        uploadRequest.uploadProgress(closure: { (progress) in
+                            request.progressing?(progress)
+                        })
+                    case .failure(let error):
+                        self?.onFailure(request, error)
+                    }
                 })
-            }, with: urlRequest, encodingCompletion: {[weak self] (multipartFormDataEncodingResult) in
-                switch multipartFormDataEncodingResult {
-                case .success( let uploadRequest, _, _):
-                    uploadRequest.responseJSON(completionHandler: { (dataResponse) in
-                        if let error = dataResponse.error {
-                            self?.onFailure(request, error)
-                        }else{
-                            self?.onSuccess(request, dataResponse.result.value)
-                        }
-                    })
-                    uploadRequest.uploadProgress(closure: { (progress) in
-                        request.progressing?(progress)
-                    })
-                case .failure(let error):
-                    self?.onFailure(request, error)
-                }
-            })
+            } catch {
+                self.onFailure(request, error)
+            }
         }else {
             dataRequest.responseJSON(options: jsonSerializationReadingOption) {[weak self] (dataResponse) in
                 if let error = dataResponse.error {
