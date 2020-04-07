@@ -68,20 +68,24 @@ extension SWNetwork {
         var method:HTTPMethod{
             var result = HTTPMethod.get
             switch request.api.method {
-            case .post:
-                result = .post
+            case .options:
+                result = .options
             case .get:
                 result = .get
-            case .upload:
+            case .head:
+                result = .head
+            case .post:
                 result = .post
-            case .patch:
-                result = .patch
             case .put:
                 result = .put
+            case .patch:
+                result = .patch
             case .delete:
                 result = .delete
-            case .putUpload:
-                result = .put
+            case .trace:
+                result = .trace
+            case .connect:
+                result = .connect
             }
             return result
         }
@@ -97,20 +101,12 @@ extension SWNetwork {
         }
         
         willRequest(request)
-        if request.api.method != .upload {
-            dataRequest.responseJSON(options: jsonSerializationReadingOption) {[weak self] (dataResponse) in
-                if let error = dataResponse.error {
-                    self?.onFailure(request, error)
-                }else{
-                    self?.onSuccess(request, dataResponse.result.value)
-                }
-            }
-        }else if let files = request.api.files, request.api.method == .upload {
+        if let files = request.api.files, files.count > 0 {
             sessionManager.upload(multipartFormData: { (multipartFormData) in
                 files.forEach({ (file) in
                     multipartFormData.append(file.fileData, withName: file.parameterName, fileName: file.fileName, mimeType: file.mimeType.rawValue)
                 })
-            }, to: url) {[weak self] (multipartFormDataEncodingResult) in
+            }, to: url, method: method, encodingCompletion: {[weak self] (multipartFormDataEncodingResult) in
                 switch multipartFormDataEncodingResult {
                 case .success( let uploadRequest, _, _):
                     uploadRequest.responseJSON(completionHandler: { (dataResponse) in
@@ -125,6 +121,14 @@ extension SWNetwork {
                     })
                 case .failure(let error):
                     self?.onFailure(request, error)
+                }
+            })
+        }else {
+            dataRequest.responseJSON(options: jsonSerializationReadingOption) {[weak self] (dataResponse) in
+                if let error = dataResponse.error {
+                    self?.onFailure(request, error)
+                }else{
+                    self?.onSuccess(request, dataResponse.result.value)
                 }
             }
         }

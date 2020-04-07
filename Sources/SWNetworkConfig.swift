@@ -11,18 +11,27 @@ import Foundation
 // Enumeration
 extension SWNetwork {
     /// 请求方法
-    public enum HttpMethod { case post, get, upload, putUpload, patch, put, delete }
+    public enum HttpMethod { case options, get, head, post, put, patch, delete, trace, connect }
     
     /// 媒体类型
     public enum MimeType: String {
+        ///.*（ 二进制流，不知道下载文件类型）
+        case any    = "application/octet-stream"
+        ///.001
+        case x001   = "application/x-001"
+        ///.323
+        case h323   = "text/h323"
         case jpeg   = "image/jpeg"
         case png    = "image/png"
         case bmp    = "image/bmp"
-        case mp4    = "mp4"
+        case mp4    = "video/mpeg4"
         
         /// 文件名后缀
         public var suffix: String {
             switch self {
+            case .any:  return ".*"
+            case .x001: return ".001"
+            case .h323: return ".323"
             case .jpeg: return ".jpg"
             case .png:  return ".png"
             case .bmp:  return ".bmp"
