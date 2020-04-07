@@ -101,12 +101,12 @@ extension SWNetwork {
         }
         
         willRequest(request)
-        if let files = request.api.files, files.count > 0 {
+        if let files = request.api.files, files.count > 0, let urlRequest = dataRequest.request {
             sessionManager.upload(multipartFormData: { (multipartFormData) in
                 files.forEach({ (file) in
                     multipartFormData.append(file.fileData, withName: file.parameterName, fileName: file.fileName, mimeType: file.mimeType.rawValue)
                 })
-            }, to: url, method: method, encodingCompletion: {[weak self] (multipartFormDataEncodingResult) in
+            }, with: urlRequest, encodingCompletion: {[weak self] (multipartFormDataEncodingResult) in
                 switch multipartFormDataEncodingResult {
                 case .success( let uploadRequest, _, _):
                     uploadRequest.responseJSON(completionHandler: { (dataResponse) in
