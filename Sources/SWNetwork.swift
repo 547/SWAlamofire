@@ -91,17 +91,9 @@ extension SWNetwork {
         }
         let parameters = request.api.parameters
         let headers = request.headers
-        /**
-         * get、delete 两种方法的参数 parameters 会被自动拼接到url 后面
-         * post、patch、put的参数 parameters 则是在请求体body里面
-         */
-        let dataRequest = sessionManager.request(urlString, method: method, parameters: parameters, encoding: URLEncoding.default, headers: headers)
-        if let url = dataRequest.request?.url?.absoluteString {
-            request.api.url = url
-        }
         
         willRequest(request)
-        if let files = request.api.files, files.count > 0, let url = URL(string: urlString) {
+        if let files = request.api.files, files.count > 0 {
             sessionManager.upload(multipartFormData: { (multipartFormData) in
                 if let pars = parameters {
                     pars.forEach { (item) in
@@ -150,6 +142,14 @@ extension SWNetwork {
                 }
             }
         }else {
+            /**
+             * get、delete 两种方法的参数 parameters 会被自动拼接到url 后面
+             * post、patch、put的参数 parameters 则是在请求体body里面
+             */
+            let dataRequest = sessionManager.request(urlString, method: method, parameters: parameters, encoding: URLEncoding.default, headers: headers)
+            if let url = dataRequest.request?.url?.absoluteString {
+                request.api.url = url
+            }
             dataRequest.responseJSON(options: jsonSerializationReadingOption) {[weak self] (dataResponse) in
                 if let error = dataResponse.error {
                     self?.onFailure(request, error)
