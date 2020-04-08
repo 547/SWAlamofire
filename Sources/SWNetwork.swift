@@ -102,33 +102,52 @@ extension SWNetwork {
         
         willRequest(request)
         if let files = request.api.files, files.count > 0, let url = URL(string: urlString) {
-            var originalRequest: URLRequest?
-            do {
-                originalRequest = try URLRequest(url: url, method: method, headers: headers)
-                let encodedURLRequest = try URLEncoding.default.encode(originalRequest!, with: parameters)
-                sessionManager.upload(multipartFormData: { (multipartFormData) in
-                    files.forEach({ (file) in
-                        multipartFormData.append(file.fileData, withName: file.parameterName, fileName: file.fileName, mimeType: file.mimeType.rawValue)
-                    })
-                }, with: encodedURLRequest, encodingCompletion: {[weak self] (multipartFormDataEncodingResult) in
-                    switch multipartFormDataEncodingResult {
-                    case .success( let uploadRequest, _, _):
-                        uploadRequest.responseJSON(completionHandler: { (dataResponse) in
-                            if let error = dataResponse.error {
-                                self?.onFailure(request, error)
-                            }else{
-                                self?.onSuccess(request, dataResponse.result.value)
+            sessionManager.upload(multipartFormData: { (multipartFormData) in
+                if let pars = parameters {
+                    pars.forEach { (item) in
+                        if let value = item.value as? String, let data = value.data(using: .utf8) {
+                            multipartFormData.append(data, withName: item.key)
+                        }
+                        if let value = item.value as? Int, let data = "\(value)".data(using: .utf8) {
+                            multipartFormData.append(data, withName: item.key)
+                        }
+                        if let value = item.value as? [String] {
+                            value.forEach { (string) in
+                                let key = item.key + "[]"
+                                if let data = string.data(using: .utf8) {
+                                    multipartFormData.append(data, withName: key)
+                                }
                             }
-                        })
-                        uploadRequest.uploadProgress(closure: { (progress) in
-                            request.progressing?(progress)
-                        })
-                    case .failure(let error):
-                        self?.onFailure(request, error)
+                        }
+                        if let value = item.value as? [Int] {
+                            value.forEach { (num) in
+                                let key = item.key + "[]"
+                                if let data = "\(num)".data(using: .utf8) {
+                                    multipartFormData.append(data, withName: key)
+                                }
+                            }
+                        }
                     }
+                }
+                files.forEach({ (file) in
+                    multipartFormData.append(file.fileData, withName: file.parameterName, fileName: file.fileName, mimeType: file.mimeType.rawValue)
                 })
-            } catch {
-                self.onFailure(request, error)
+            }, to: urlString, method: method, headers: headers) {[weak self] (multipartFormDataEncodingResult) in
+                switch multipartFormDataEncodingResult {
+                case .success( let uploadRequest, _, _):
+                    uploadRequest.responseJSON(completionHandler: { (dataResponse) in
+                        if let error = dataResponse.error {
+                            self?.onFailure(request, error)
+                        }else{
+                            self?.onSuccess(request, dataResponse.result.value)
+                        }
+                    })
+                    uploadRequest.uploadProgress(closure: { (progress) in
+                        request.progressing?(progress)
+                    })
+                case .failure(let error):
+                    self?.onFailure(request, error)
+                }
             }
         }else {
             dataRequest.responseJSON(options: jsonSerializationReadingOption) {[weak self] (dataResponse) in
