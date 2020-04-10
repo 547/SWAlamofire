@@ -16,7 +16,7 @@ open class SWNetwork {
     private lazy var sessionManager: SessionManager = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        configuration.timeoutIntervalForRequest = 5
+        configuration.timeoutIntervalForRequest = 30
         let result = SessionManager.init(configuration: configuration)
         return result
     }()
