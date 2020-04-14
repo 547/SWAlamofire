@@ -15,16 +15,19 @@ extension SWNetwork {
     
     /// 媒体类型
     public enum MimeType: String {
-        ///.*（ 二进制流，不知道下载文件类型）
+        ///.*（ 二进制流，不知道文件类型）
         case any    = "application/octet-stream"
         ///.001
         case x001   = "application/x-001"
         ///.323
         case h323   = "text/h323"
+        
         case jpeg   = "image/jpeg"
         case png    = "image/png"
         case bmp    = "image/bmp"
         case mp4    = "video/mpeg4"
+        
+        case pdf    = "application/pdf"
         
         /// 文件名后缀
         public var suffix: String {
@@ -37,6 +40,8 @@ extension SWNetwork {
             case .bmp:  return ".bmp"
                 
             case .mp4:  return ".mp4"
+                
+            case .pdf:  return ".pdf"
             }
         }
     }
