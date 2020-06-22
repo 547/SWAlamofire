@@ -127,7 +127,7 @@ extension SWNetwork {
             }, to: urlString, method: method, headers: headers) {[weak self] (multipartFormDataEncodingResult) in
                 switch multipartFormDataEncodingResult {
                 case .success( let uploadRequest, _, _):
-                    uploadRequest.responseJSON(completionHandler: { (dataResponse) in
+                    uploadRequest.validate().responseJSON(completionHandler: { (dataResponse) in
                         if let error = dataResponse.error {
                             self?.onFailure(request, error)
                         }else{
@@ -150,7 +150,7 @@ extension SWNetwork {
             if let url = dataRequest.request?.url?.absoluteString {
                 request.api.url = url
             }
-            dataRequest.responseJSON(options: jsonSerializationReadingOption) {[weak self] (dataResponse) in
+            dataRequest.validate().responseJSON(options: jsonSerializationReadingOption) {[weak self] (dataResponse) in
                 if let error = dataResponse.error {
                     self?.onFailure(request, error)
                 }else{
@@ -204,7 +204,10 @@ extension SWNetwork {
     }
     
     open func onFailure(_ request: SWNetworkRequest, _ error: Error?) {
-        let code = (error as NSError?)?.code ?? -1
+        var code = (error as NSError?)?.code ?? -1
+        if let afError = error as? AFError, afError.isResponseValidationError, let responseCode = afError.responseCode {
+            code = responseCode
+        }
         let response = SWNetworkResponse.failure(with: request, code: code, message: error?.localizedDescription ?? "No Error Message")
         
         didResponse(response)
